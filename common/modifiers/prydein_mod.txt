@@ -1,0 +1,3 @@
+prydein_mod = {
+	popular_opinion = 50
+}

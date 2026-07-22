@@ -1,0 +1,4 @@
+e_prydein = {
+	color = {111 237 116}
+	capital = c_dublin
+}

@@ -1,0 +1,164 @@
+decisions_category = {
+	unite_the_gaels = {
+		picture = {reference = "gfx/decision_found_kingdom.dds"}
+		desc = unite_the_gaels_desc
+		decission_group_type = major
+		is_shown = {
+			is_ruler = yes
+			OR = {
+				has_title = title:k_scotland
+				has_title = title:k_ireland
+				has_title = title:k_man
+				has_title = title:k_wales
+				has_title = title:k_cumbria
+				has_title = title:k_cornwall
+			}
+			OR = {
+				culture_group = brythonic_group
+				culture_group = goidelic_group
+			}
+			highiest_held_title_tier = tier_kingdom
+			NOT = {
+				title_exists = title:e_prydein
+			}
+		}
+		is_valid_showing_failures_only = {
+			is_available_adult = yes
+			is_at_war = no
+		}
+		is_valid = {
+			highiest_held_title_tier = tier_kingdom
+			has_title = title:k_scotland
+			has_title = title:k_ireland
+			has_title = title:wales
+			OR = {
+				culture_group = brythonic_group
+				culture_group = goidelic_group
+			}
+			every_powerful_vassal = {
+				opinion = {
+					target = root
+					value >= 50
+				}
+				OR = {
+					culture_group = brythonic_group
+					culture_group = goidelic_group
+				}
+			}
+			prestige_level >= 4
+
+		}
+		cost = {
+			gold = 300
+			prestige = 1500
+		}
+		effect = {
+			create_title = title:e_prydein
+			title:e_prydein = {
+				grant_title = root
+			}
+			title:k_scotland = {
+				set_de_jure_liege_title = title:e_prydein
+			}
+			title:k_ireland = {
+				set_de_jure_liege_title = title:e_prydein
+			}
+			title:k_wales = {
+				set_de_jure_liege_title = title:e_prydein
+			}
+			if = {
+				limit = {
+					root = {
+						has_title = title:k_cumbria
+					}
+				}
+				title:k_cumbria = {
+					set_de_jure_liege_title = title:e_prydein
+				}
+			}
+			if = {
+				limit = {
+					root = {
+						has_title = title:k_man
+					}
+				}
+				title:k_man = {
+					set_de_jure_liege_title = title:e_prydein
+				}
+			}
+			if = {
+				limit = {
+					root = {
+						has_title = title:k_cornwall
+					}
+				}
+				title:k_cornwall = {
+					set_de_jure_liege_title = title:e_prydein
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						title_exists = title:k_cornwall
+					}
+					OR = {
+						root = {
+							has_title = title:d_cornwall
+						}
+						title:d_cornwall = {
+							is_vassal_of = root
+						}
+					}
+				}
+				title:d_cornwall = {
+					set_de_jure_liege_title = title:k_wales
+				}
+			}
+			if = {
+				limit = {
+					root = {
+						has_title = title:d_northumbria
+					}
+					title:d_northumbria = {
+						is_vassal_of = root
+					}
+				}
+				title:d_northumbria = {
+					set_de_jure_liege_title = title:k_scotland
+				}
+			}
+			if = {
+				limit = {
+					goverment_has_flag = goverment_is_tribal
+				}
+				convert_whole_realm_to_feudalism_effect = yes
+			}
+			add_random_innovation = culture_group_military
+			add_random_innovation = culture_group_civic
+			root = {
+				every_sub_realm_county = {
+					limit = {
+						OR = {
+							culture_group = brythonic_group
+							culture_group = goidelic_group
+						}
+					}
+					add_county_modifier = {
+						modifier = prydein_mod
+						years = 20
+					}
+
+			}
+
+		}
+		give_nickname = trojan
+		dynasty = {
+			add_dynasty_prestige = 2500
+		}
+
+
+		}
+		ai_goal = yes
+		ai_potential = {always = yes}
+	}
+}
