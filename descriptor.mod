@@ -3,4 +3,4 @@ tags = {
     "Decisions"
 }
 name = "Britain Custom Decisions"
-supported_version = "1.9.0.6"
+supported_version = "1.19.0.6"
